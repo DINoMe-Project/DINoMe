@@ -1,3 +1,11 @@
+"""
+This file includes 
+1. victim models for three different workloads(naive cache-based side channel
+(ModelCacheSideChannelXXX), spectre attacks(ModelSpectreXXX), and modexp
+function(ModelCacheModExpRandom))
+2. scripts to automatically generate name --> [var1, var2, ..] mapping for S,
+C, I, O
+"""
 import os
 import sys
 import collections
