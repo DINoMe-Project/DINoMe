@@ -1,6 +1,6 @@
 [submodule "cryptominisat"]
 	path = cryptominisat
-	url = https://github.com/ziqiaozhou/cryptominisat.git
+	url = https://github.com/ziqiaozhou/DINoMeCounter.git 
 [submodule "chipyard"]
 	path = chipyard
 	url = https://github.com/ziqiaozhou/chipyard.git
