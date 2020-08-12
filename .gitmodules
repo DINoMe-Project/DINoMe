@@ -1,0 +1,3 @@
+[submodule "cryptominisat"]
+	path = cryptominisat
+	url = https://github.com/ziqiaozhou/cryptominisat.git
