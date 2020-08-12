@@ -1,5 +1,5 @@
 [submodule "cryptominisat"]
-	path = cryptominisat
+	path = DINoMeCounter
 	url = https://github.com/ziqiaozhou/DINoMeCounter.git 
 [submodule "chipyard"]
 	path = chipyard
