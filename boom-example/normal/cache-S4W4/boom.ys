@@ -1,0 +1,61 @@
+#`define N_CACHE_SET 8
+#`define ICACHE4WAY 64
+#`define BTB_SET 4
+#`define ATTACKER_CONTROLLED_MEM_INDEX 10'h200
+#`define ATTACKER_CONTROLLED_MEM_SIZE 1
+#`define SIZE_VALUE_MEM_INDEX 10'h310
+read_verilog <<E
+function automatic [31:0] random;
+random=32'h0;
+endfunction
+E
+verilog_defines -D SECRET_LD_INSTR_IDX=3
+# 32'h18[8:3] =3;
+verilog_defines -D SECRET_LD_INSTR_ADDR=32'h18
+verilog_defines -D SYNTHESIS=1
+verilog_defines -D YOSYS=1
+verilog_defines -D RANDOM=32'h0
+verilog_defines -D RANDOMIZE_DELAY=0.2
+verilog_defines -D RANDOMIZE_MEM_INIT=1
+verilog_defines -D RANDOMIZE_REG_INIT=1
+read_verilog myvsim/SimSerial.v
+read_verilog myvsim/plusarg_reader.v
+read_verilog myvsim/EICG_wrapper.v
+read_verilog myvsim/AsyncResetReg.v
+read_verilog myvsim/AsyncResetReg2.v
+read_verilog myvsim/AsyncResetReg3.v
+read_verilog myvsim/AsyncResetReg4.v
+read_verilog myvsim/mem2.v
+read_verilog myvsim/mem3.v
+#read_verilog myvsim/tlb.v
+read_verilog vsim/example.TestHarness.NormalTinyBoomConfigS4W4.top.mems.v
+read_verilog vsim/example.TestHarness.NormalTinyBoomConfigS4W4.harness.mems.v
+read_verilog vsim/example.TestHarness.NormalTinyBoomConfigS4W4.top.v
+read_verilog vsim/example.TestHarness.NormalTinyBoomConfigS4W4.harness.v
+#read_verilog myvsim/mem3.v 
+hierarchy
+
+write_ilang boom_hir.ilang
+proc
+write_ilang boom_proc.ilang
+memory_dff
+memory_collect
+flatten
+cd TestHarness
+expose top.boom_tile.dcache.meta_0.io_resp_0_coh_state
+expose top.boom_tile.dcache.meta_0.io_resp_0_tag
+cd ..
+write_ilang boom_flatten.ilang
+
+prep -top TestHarness -nordff
+#memory_dff
+#memory_memx
+memory -nordff
+fsm
+opt -keepdc
+opt_clean
+write_smt2 -stbv   boom.smt2
+write_ilang boom-initall.ilang
+write_smt2_trans -stbv boom-initall.smt2
+
+
