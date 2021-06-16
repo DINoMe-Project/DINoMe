@@ -1,5 +1,11 @@
-For usage information about the tool:
+# Install
+```
+cd skope-rule
+pip3 install ./
+```
+
+# For usage information about the tool:
 ```
 cd xgboost
-python train_bits.py --help
+python3 train_bits.py --help
 ```
