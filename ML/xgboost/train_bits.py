@@ -11,13 +11,9 @@ import os
 from sklearn.model_selection import GridSearchCV
 import datetime
 
-print("hi")
 from skrules.xgboost_rules import xgbtree_rule_perf,xgbtree_to_rules,tocnffile,simplify_rules,tosymrule
 from sympy import simplify
-print("hi")
 from customLinear import LinearFeature
-#import matplotlib.pyplot as plt
-print("hi")
 """
 data: pandas.dataframe
 """
