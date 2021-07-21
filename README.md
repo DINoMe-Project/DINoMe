@@ -1,8 +1,8 @@
 # DINoMe
 This repository include three submodules: 
-1. chipyard with our Tiny configurations and modified cache modules;
-2. yosys with a modified SMT2 transformer to generate transition formula and initial state;
-3. cryptominisat_DINoMe: Implementation for postcondition construction, and count/ sample <S, S', C, I> tuples;
+1. chipyard with our Tiny configurations for NormalCache, ScatterCache, and PhantomCache, defined in `chipyard/generators/example/src/main/scala/NormalConfig.scala`, `chipyard/generators/example/src/main/scala/ScatterConfig.scala`, `chipyard/generators/example/src/main/scala/PhantomConfig.scala`;
+3. yosys with a modified SMT2 transformer to generate transition formula and initial state;
+4. cryptominisat_DINoMe: Implementation for postcondition construction, and count/ sample <S, S', C, I> tuples;
 
 and two folders:
 1. ML: ML related codes for feature engineer and rule generations; (under xgboost)
